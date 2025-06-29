@@ -1,0 +1,6 @@
+{
+  "name": "SpecForge: AI-Powered Tech Spec Generator",
+  "description": "Turn your app idea into technical documentation using AI. Input your concept and receive a structured specification in Markdown format. This MVP focuses on idea input and AI-generated Markdown display.",
+  "requestFramePermissions": [],
+  "prompt": ""
+}

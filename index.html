@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SpecForge</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23161C2D'/><g transform='translate(4 4)'><path fill='%231EC46A' d='M19.14,12.94c0.04-0.3,0.06-0.61,0.06-0.94c0-0.32-0.02-0.64-0.07-0.94l2.03-1.58c0.18-0.14,0.23-0.41,0.12-0.61 l-1.92-3.32c-0.12-0.22-0.37-0.29-0.59-0.22l-2.39,0.96c-0.5-0.38-1.03-0.7-1.62-0.94L14.4,2.81c-0.04-0.24-0.24-0.41-0.48-0.41 h-3.84c-0.24,0-0.44,0.17-0.48,0.41L9.22,5.25C8.63,5.49,8.1,5.81,7.6,6.19L5.21,5.23C4.99,5.16,4.74,5.22,4.62,5.44L2.7,8.76 c-0.12,0.2,0,0.47,0.18,0.61l2.03,1.58C4.88,11.36,4.86,11.68,4.86,12s0.02,0.64,0.07,0.94l-2.03,1.58 c-0.18,0.14-0.23,0.41-0.12,0.61l1.92,3.32c0.12,0.22,0.37,0.29,0.59,0.22l2.39-0.96c0.5,0.38,1.03,0.7,1.62,0.94l0.38,2.44 c0.04,0.24,0.24,0.41,0.48,0.41h3.84c0.24,0,0.44-0.17,0.48-0.41l0.38-2.44c0.59-0.24,1.13-0.56,1.62-0.94l2.39,0.96 c0.22,0.08,0.47,0.02,0.59-0.22l1.92-3.32c0.12-0.2,0-0.47-0.18-0.61L19.14,12.94z M12,15.6c-1.98,0-3.6-1.62-3.6-3.6 s1.62-3.6,3.6-3.6s3.6,1.62,3.6,3.6S13.98,15.6,12,15.6z'/></g></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            display: ['Space Grotesk', 'sans-serif'],
+          },
+          colors: {
+            base:  { DEFAULT: "#0D1117" },
+            panel: { DEFAULT: "#161C2D" },
+            accent:{ DEFAULT: "#1EC46A", dark: "#19aa59" },
+            text:  {
+              heading: "#FFFFFF",
+              body:    "#B0BAC9",
+              muted:   "#6E7681",
+            },
+            danger: {
+              DEFAULT: "#FF4444",
+              bgLight: "rgba(255, 68, 68, 0.2)",
+              borderLight: "#ff4444"
+            }
+          },
+          borderRadius: { 
+            md: "8px", 
+            lg: "12px" 
+          },
+        }
+      },
+      plugins: [
+        function({ addUtilities, addComponents, theme }) {
+          addUtilities({
+            '.custom-scrollbar': {
+              '&::-webkit-scrollbar': {
+                width: '8px',
+                height: '8px',
+              },
+              '&::-webkit-scrollbar-track': {
+                background: '#161C2D', // panel color
+              },
+              '&::-webkit-scrollbar-thumb': {
+                background: '#1EC46A', // accent color
+                borderRadius: '4px',
+                '&:hover': {
+                  background: '#19aa59', // accent-dark
+                },
+              },
+            },
+          });
+          addComponents({
+            '.prose-custom': {
+              color: theme('colors.text.body'),
+              lineHeight: theme('lineHeight.relaxed'),
+              '> :first-child': { marginTop: '0' },
+              '> :last-child': { marginBottom: '0' },
+
+              'h1, h2, h3, h4, h5, h6': {
+                color: theme('colors.text.heading'),
+                fontWeight: theme('fontWeight.bold'),
+                marginTop: theme('spacing.6'),
+                marginBottom: theme('spacing.3'),
+                fontFamily: theme('fontFamily.display'),
+              },
+              h1: { fontSize: theme('fontSize.3xl') },
+              h2: { fontSize: theme('fontSize.2xl') },
+              h3: { fontSize: theme('fontSize.xl') }, // Primary heading inside a section from Markdown
+              h4: { fontSize: theme('fontSize.lg') },
+              
+              p: {
+                marginTop: theme('spacing.4'),
+                marginBottom: theme('spacing.4'),
+              },
+              a: {
+                color: theme('colors.accent.DEFAULT'),
+                textDecoration: 'underline',
+                fontWeight: theme('fontWeight.medium'),
+                '&:hover': {
+                  color: theme('colors.accent.dark'),
+                },
+              },
+              strong: {
+                color: theme('colors.text.heading'),
+                fontWeight: theme('fontWeight.semibold'),
+              },
+              'ul, ol': {
+                marginTop: theme('spacing.4'),
+                marginBottom: theme('spacing.4'),
+                paddingLeft: theme('spacing.6'),
+              },
+              ul: { listStyleType: 'disc' },
+              ol: { listStyleType: 'decimal' },
+              li: { 
+                marginTop: theme('spacing.2'),
+                marginBottom: theme('spacing.2'),
+              },
+              'li > ul, li > ol': {
+                 marginTop: theme('spacing.2'),
+                 marginBottom: theme('spacing.2'),
+              },
+              blockquote: {
+                marginTop: theme('spacing.6'),
+                marginBottom: theme('spacing.6'),
+                paddingLeft: theme('spacing.4'),
+                borderLeftWidth: theme('borderWidth.4'),
+                borderColor: theme('colors.accent.DEFAULT'),
+                backgroundColor: theme('colors.panel.DEFAULT'), // Slight background tint
+                fontStyle: 'italic',
+                color: theme('colors.text.muted'),
+              },
+              'blockquote p': {
+                marginTop: '0',
+                marginBottom: '0',
+              },
+              hr: {
+                borderColor: theme('colors.panel.DEFAULT'),
+                borderTopWidth: theme('borderWidth.DEFAULT'),
+                marginTop: theme('spacing.8'),
+                marginBottom: theme('spacing.8'),
+              },
+              pre: { // For code blocks handled by SyntaxHighlighter
+                marginTop: theme('spacing.6'),
+                marginBottom: theme('spacing.6'),
+                borderRadius: theme('borderRadius.md'),
+                // SyntaxHighlighter applies its own background and padding
+              },
+              code: { // For inline code
+                backgroundColor: theme('colors.panel.DEFAULT'),
+                color: theme('colors.accent.DEFAULT'),
+                padding: `${theme('spacing.px')} ${theme('spacing.1')}`,
+                borderRadius: theme('borderRadius.sm'),
+                fontSize: theme('fontSize.sm'),
+                fontWeight: theme('fontWeight.medium'),
+              },
+              'pre code': { // Reset for code inside pre, SyntaxHighlighter handles it
+                 backgroundColor: 'transparent',
+                 color: 'inherit',
+                 padding: '0',
+                 borderRadius: '0',
+                 fontSize: 'inherit',
+                 fontWeight: 'inherit',
+              },
+              table: {
+                width: '100%',
+                marginTop: theme('spacing.6'),
+                marginBottom: theme('spacing.6'),
+                fontSize: theme('fontSize.sm'),
+                textAlign: 'left',
+                borderCollapse: 'collapse',
+              },
+              thead: {
+                borderBottomWidth: theme('borderWidth.2'),
+                borderColor: theme('colors.panel.DEFAULT'),
+                color: theme('colors.text.heading'),
+                fontWeight: theme('fontWeight.semibold'),
+              },
+              'th, td': {
+                padding: `${theme('spacing.2')} ${theme('spacing.3')}`,
+                borderWidth: '1px',
+                borderColor: theme('colors.panel.DEFAULT'), // Softer borders for table cells
+              },
+              'tbody tr:nth-child(even)': {
+                backgroundColor: theme('colors.base.DEFAULT / 0.5') // Subtle striping for even rows
+              }
+            }
+          })
+        }
+      ]
+    }
+  </script>
+<script type="importmap">
+{
+  "imports": {
+    "react": "https://esm.sh/react@^19.1.0",
+    "react-dom/": "https://esm.sh/react-dom@^19.1.0/",
+    "react/": "https://esm.sh/react@^19.1.0/",
+    "react-markdown": "https://esm.sh/react-markdown@^10.1.0",
+    "remark-gfm": "https://esm.sh/remark-gfm@^4.0.1",
+    "react-syntax-highlighter": "https://esm.sh/react-syntax-highlighter@^15.6.1",
+    "react-syntax-highlighter/": "https://esm.sh/react-syntax-highlighter@^15.6.1/",
+    "@google/genai": "https://esm.sh/@google/genai@^1.4.0",
+    "firebase/": "https://esm.sh/firebase@^11.9.1/"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
+</head>
+<body class="bg-base text-text-body antialiased font-sans">
+  <div id="root"></div>
+  <script type="module" src="/index.tsx"></script>
+</body>
+</html>
