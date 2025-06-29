@@ -8,14 +8,13 @@ import type { Auth } from "firebase/auth";
 import type { Firestore } from "firebase/firestore";
 
 
-// Hardcoded Firebase configuration provided by the user to resolve authentication errors.
 const firebaseConfig = {
-  apiKey: "AIzaSyDIOsPBKhT3o0iame68nW7g7fu3SJ5aM3M",
-  authDomain: "dulcet-opus-461713-n0.firebaseapp.com",
-  projectId: "dulcet-opus-461713-n0",
-  storageBucket: "dulcet-opus-461713-n0.appspot.com",
-  messagingSenderId: "122426031888",
-  appId: "1:122426031888:web:b65d91843f2bf6f119af95",
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+  appId: import.meta.env.VITE_FIREBASE_APP_ID,
 };
 
 // Initialize Firebase with the provided configuration

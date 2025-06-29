@@ -373,10 +373,10 @@ export const generateSpecFromIdea = async (
   _selectedModuleIds: string[], // This parameter is now ignored for constructing the AI prompt
   onChunkReceived: (chunk: string) => void
 ): Promise<string> => {
-  const apiKey = process.env.API_KEY;
+  const apiKey = import.meta.env.VITE_GEMINI_API_KEY;
 
   if (!apiKey) {
-    console.error("FATAL: Gemini API key is missing in environment variables (process.env.API_KEY). This is a server-side configuration issue.");
+    console.error("FATAL: Gemini API key is missing in environment variables (import.meta.env.VITE_GEMINI_API_KEY). This is a configuration issue.");
     throw new Error("The AI service is not configured correctly. Please try again later.");
   }
   
@@ -425,7 +425,7 @@ ${NEW_MASTER_SPEC_GENERATION_PROMPT}
 };
 
 export const elaborateOnSection = async (sectionContent: string, userQuestion: string): Promise<string> => {
-  const apiKey = process.env.API_KEY;
+  const apiKey = import.meta.env.VITE_GEMINI_API_KEY;
   if (!apiKey) {
     throw new Error("The AI service is temporarily unavailable. Please try again later.");
   }
@@ -468,7 +468,7 @@ Format your response using Markdown. For example, use headings, lists, bold text
 };
 
 export const analyzeSpecification = async (fullSpecContent: string): Promise<string> => {
-  const apiKey = process.env.API_KEY;
+  const apiKey = import.meta.env.VITE_GEMINI_API_KEY;
   if (!apiKey) {
     throw new Error("The AI service is temporarily unavailable. Please try again later.");
   }
@@ -533,7 +533,7 @@ export const regenerateSection = async (
   originalSectionContent: string, 
   userInstructions?: string
 ): Promise<string> => {
-  const apiKey = process.env.API_KEY;
+  const apiKey = import.meta.env.VITE_GEMINI_API_KEY;
   if (!apiKey) {
     throw new Error("The AI service is temporarily unavailable. Please try again later.");
   }

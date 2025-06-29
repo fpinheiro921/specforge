@@ -1,0 +1,19 @@
+# Node modules
+node_modules/
+dist/
+build/
+.vite/
+.cache/
+*.log
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# VSCode
+.vscode/
