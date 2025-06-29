@@ -8,9 +8,6 @@ import type { Auth } from "firebase/auth";
 import type { Firestore } from "firebase/firestore";
 
 
-// Debugging: Log the authDomain to check if it's loaded correctly in the build environment.
-console.log("Firebase Auth Domain from env:", import.meta.env.VITE_FIREBASE_AUTH_DOMAIN);
-
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
   authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
